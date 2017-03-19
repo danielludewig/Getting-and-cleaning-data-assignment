@@ -1,7 +1,7 @@
 # Getting and Cleaning Data Assignment
 The Week 4 assignment for the Getting and Cleaning Data Coursera course. 
 
-This was a project was designed to demostrate the ability to gather, tidy and summarize a data set concerning wearable computing. 
+This was a project was designed to demonstrate the ability to gather, tidy and summarise a data set concerning wearable computing. 
 
 ## The Data Set
 
@@ -24,9 +24,19 @@ The script "run_analysis.R" was designed to complete to 5 criteria of the assign
 
 The script contains statements describing the process to make it easy to follow and understand. 
 
+## Process description
+
 The first step of the process is to load all relevant packages, download the files from the link above and unzip them. The script then changes the working directory to the unzipped file. 
+
 The file containing the list of features is then read into a variable in R, as these are to be used as column names for the data. The three files in the test set of data are then read into R as separate variables. The arguments are passed during this process to give the columns names, avoiding the need to do this later to satisfy part three of the assignment criteria. The vector extracted from the features file is used to name the "X_test.txt" data file, "Activity_Labels" is used to name the "y_test.txt" data file and "Subject" is used to name the "subject_train.txt" data file. cbind() is then called to unite all the testing data in a new variable. 
-This process is then repeated for the training set of data. This allows for the the easy use of rbind() to merge all the data into a single data set, satisfying the first criteria of the assignment. The arrange() function is then called to allow for easier data manipulation later. 
+
+This process is then repeated for the training set of data. This allows for the easy use of rbind() to merge all the data into a single data set, satisfying the first criteria of the assignment. The arrange() function is then called to allow for easier data manipulation later.
+
 In order to satisfy the second criteria of the assignment the grep() function is called to subset the data. As the assignment was ambiguous as to what "mean" values were, the script broadly includes as mean measurements. 
-The activity label data file is then read in and saved to a variable. This is then used to mutate the "Activity_Lables" column within the data frame to character vectors decribing the activity. This satisfies the third criteria of the assignment. 
+
+The activity label data file is then read in and saved to a variable. This is then used to mutate the "Activity_Lables" column within the data frame to character vectors describing the activity. This satisfies the third criteria of the assignment. 
+
+The forth criteria of the assignment was satisfied earlier on in the process, as column names were outlined when the tables were read in. Further descriptions of the variables are given in the codebook. 
+
+The final step of the process is to create a new tidy data set containing the means of each activity for each subject. This is completed by calling the group_by() function the group the data by subject, then by activity and call the summarise_all() function to determine the means. The result is saved to a new variable, and the write.table() function is called for produce an uploadable text file for submission. 
 
